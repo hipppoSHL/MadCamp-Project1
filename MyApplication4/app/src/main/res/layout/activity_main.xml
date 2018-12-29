@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!--CoordinatorLayout : 액션바 영역을 포함한 전체 화면의 위치를 잡아주는 역할-->
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <!--AppBarLayout : 액션바 영역-->
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+            <!--Toolbar : 툴바-->
+            <!--android:elevation : 객체의 z값을 올려준다-->
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:background="@color/colorPrimaryDark"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark"
+                android:elevation="1dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/titleText"
+                    android:text="타이틀"
+                    android:textAppearance="@style/Base.TextAppearance.Widget.AppCompat.Toolbar.Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </android.support.v7.widget.Toolbar>
+            <!--//Toolbar-->
+
+            <!--TabLayout : 탭-->
+            <!--app:tabMode="fixed" , app:tabGravity="fill" : 탭너비 동일하게-->
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tabs"
+                app:tabMode="fixed"
+                app:tabGravity="fill"
+                app:tabTextColor="@color/colorPrimary"
+                app:tabSelectedTextColor="@color/colorAccent"
+                android:elevation="1dp"
+                android:background="@android:color/background_light"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <!--//TabLayout-->
+        </android.support.design.widget.AppBarLayout>
+        <!--//AppBarLayout-->
+
+        <!--화면내용-->
+        <FrameLayout
+            android:id="@+id/container"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </android.support.design.widget.CoordinatorLayout>
+    <!--//CoordinatorLayout-->
+
+</RelativeLayout>
