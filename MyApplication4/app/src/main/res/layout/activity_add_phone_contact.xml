@@ -73,11 +73,27 @@
 
         </LinearLayout>
 
-        <Button
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Save Phone Contact"
-            android:id="@+id/add_phone_contact_save_button"/>
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/add_phone_contact_save_button"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="저장" />
+
+            <Button
+                android:id="@+id/add_phone_contact_quit_button"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="취소" />
+
+        </LinearLayout>
+
         
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

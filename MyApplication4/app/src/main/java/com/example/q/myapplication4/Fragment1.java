@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -16,17 +18,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
 
 public class Fragment1 extends Fragment {
-
+    public static final String IntentName = "nameText";
+    public static final String IntentNumber = "numText";
 
     private ListView listView;
     private CustomAdapter customAdapter;
@@ -89,15 +95,25 @@ public class Fragment1 extends Fragment {
         // 리스트뷰 클릭이벤트
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView parent, View view, int position, long id) {
-                TextView tv_name = (TextView) view.findViewById(R.id.name);
-                TextView tv_number = (TextView) view.findViewById(R.id.number);
-                // 토스트 예제
-                // Toast.makeText(getActivity(), "item!", Toast.LENGTH_LONG).show();
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getActivity(), ContactActivity.class);
 
-//                Intent intent = new Intent(getActivity(), ContactActivity.class);
-//                startActivity(intent);
-                startActivity(new Intent(getActivity(), ContactActivity.class));
+                TextView name = (TextView) view.findViewById(R.id.name);
+                TextView number = (TextView) view.findViewById(R.id.number);
+
+                // 이미지 비트맵 처리
+                // ImageView imageview = (ImageView) view.findViewById(R.id.img);
+                // BitmapDrawable drawable = (BitmapDrawable) imageview.getDrawable();
+                // Bitmap bitmap = drawable.getBitmap();
+
+                Log.w(IntentName, name.getText().toString());
+                Log.w(IntentNumber, number.getText().toString());
+
+                intent.putExtra(IntentName, name.getText().toString());
+                intent.putExtra(IntentNumber, number.getText().toString());
+                // intent.putExtra("contact_image", bitmap);
+
+                startActivity(intent);
             }
         });
 
@@ -106,8 +122,6 @@ public class Fragment1 extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
                 startActivity(new Intent(getActivity(), AddPhoneContactActivity.class));
             }
         });
