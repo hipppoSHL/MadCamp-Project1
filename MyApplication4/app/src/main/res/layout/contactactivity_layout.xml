@@ -2,24 +2,57 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="300dp"
-    android:layout_height="300dp">
+    android:layout_width="270dp"
+    android:layout_height="150dp"
+    android:layout_margin="30dp"
+    android:layout_centerHorizontal="true">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
         <TextView
+            android:id="@+id/contact_activity_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/contact_activity_name" />
+            android:layout_below="@id/contact_activity_name"
+            android:layout_marginTop="10dp"
+            android:text="01037373737"
+            android:textColor="#363636"
+            android:textSize="18sp" />
 
         <TextView
+            android:id="@+id/contact_activity_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/contact_activity_number" />
+            android:text="dkdk"
+            android:textColor="#000000"
+            android:textSize="25sp"
+            android:layout_alignParentTop="true" />
 
-    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_alignParentBottom="true">
+
+            <Button
+                android:id="@+id/call_button"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:text="전화" />
+
+            <Button
+                android:id="@+id/message_button"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:text="문자" />
+
+        </LinearLayout>
+    </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>

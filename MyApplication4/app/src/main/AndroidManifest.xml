@@ -4,6 +4,8 @@
     <!-- permission, 연락처 위해 필요 -->
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+    <uses-permission android:name="android.permission.SEND_SMS"/>
+    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
 
 
     <application
@@ -23,11 +25,11 @@
         <activity
             android:name=".ContactActivity"
             android:theme="@android:style/Theme.DeviceDefault.Light.Dialog"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="unspecified" />
         <activity
             android:name=".AddPhoneContactActivity"
             android:theme="@android:style/Theme.DeviceDefault.Light.Dialog"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="unspecified"/>
     </application>
 
 </manifest>

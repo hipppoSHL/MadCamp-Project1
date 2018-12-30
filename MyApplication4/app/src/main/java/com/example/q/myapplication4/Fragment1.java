@@ -13,6 +13,7 @@ import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -75,7 +76,6 @@ public class Fragment1 extends Fragment {
                     e.printStackTrace();
                 }
             }
-
             else {
                 bp = BitmapFactory.decodeResource(getActivity().getResources(), R.drawable.user);
             }
@@ -85,7 +85,7 @@ public class Fragment1 extends Fragment {
             contactModel.setNumber(phoneNumber);
             contactModel.setImage(bp);
             contactModelArrayList.add(contactModel);
-            Log.d("name>>",name+"  "+phoneNumber);
+            // Log.d("name>>",name+"  "+phoneNumber);
         }
         phones.close();
 
@@ -101,17 +101,11 @@ public class Fragment1 extends Fragment {
                 TextView name = (TextView) view.findViewById(R.id.name);
                 TextView number = (TextView) view.findViewById(R.id.number);
 
-                // 이미지 비트맵 처리
-                // ImageView imageview = (ImageView) view.findViewById(R.id.img);
-                // BitmapDrawable drawable = (BitmapDrawable) imageview.getDrawable();
-                // Bitmap bitmap = drawable.getBitmap();
-
                 Log.w(IntentName, name.getText().toString());
                 Log.w(IntentNumber, number.getText().toString());
 
                 intent.putExtra(IntentName, name.getText().toString());
                 intent.putExtra(IntentNumber, number.getText().toString());
-                // intent.putExtra("contact_image", bitmap);
 
                 startActivity(intent);
             }
@@ -125,6 +119,13 @@ public class Fragment1 extends Fragment {
                 startActivity(new Intent(getActivity(), AddPhoneContactActivity.class));
             }
         });
+
         return view;
+    }
+
+    // fragment refresh
+    private void refresh() {
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.detach(this).attach(this).commit();
     }
 }

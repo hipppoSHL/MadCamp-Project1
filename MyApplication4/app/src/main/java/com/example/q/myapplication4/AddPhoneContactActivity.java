@@ -50,15 +50,27 @@ public class AddPhoneContactActivity extends Activity {
 
                 // Add contact name data.
                 String displayName = displayNameEditor.getText().toString();
-                insertContactDisplayName(addContactsUri, rowContactId, displayName);
+                // insertContactDisplayName(addContactsUri, rowContactId, displayName);
 
                 // Add contact phone data.
                 String phoneNumber = phoneNumberEditor.getText().toString();
                 String phoneTypeStr = (String)phoneTypeSpinner.getSelectedItem();
-                insertContactPhoneNumber(addContactsUri, rowContactId, phoneNumber, phoneTypeStr);
+                if (!phoneNumber.equals("") && !displayName.equals("")) {
+                    insertContactPhoneNumber(addContactsUri, rowContactId, phoneNumber, phoneTypeStr);
+                    insertContactDisplayName(addContactsUri, rowContactId, displayName);
+                    Toast.makeText(getApplicationContext(), "새로운 연락처가 추가되었습니다.", Toast.LENGTH_LONG).show();
+                    finish();
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "이름과 전화번호를 잘 입력해 주세요.", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
 
-                Toast.makeText(getApplicationContext(),"New contact has been added, go back to previous page to see it in contacts list." , Toast.LENGTH_LONG).show();
-
+        Button quitAddButton = (Button) findViewById(R.id.add_phone_contact_quit_button);
+        quitAddButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 finish();
             }
         });
@@ -134,4 +146,6 @@ public class AddPhoneContactActivity extends Activity {
         Intent intent = new Intent(context, AddPhoneContactActivity.class);
         context.startActivity(intent);
     }
+
+
 }

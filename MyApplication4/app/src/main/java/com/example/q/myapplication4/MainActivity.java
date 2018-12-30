@@ -43,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
         tabs.addTab(tabs.newTab().setText("사진첩"));
         tabs.addTab(tabs.newTab().setText("tab3"));
 
+
+
         //탭 선택리스너
         tabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener(){
             Fragment selected = null;
@@ -71,5 +73,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTabReselected(TabLayout.Tab tab){}
         });
+
     }
 }
