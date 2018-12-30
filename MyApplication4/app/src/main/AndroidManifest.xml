@@ -20,6 +20,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ContactActivity"
+            android:theme="@android:style/Theme.DeviceDefault.Light.Dialog"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AddPhoneContactActivity"
+            android:theme="@android:style/Theme.DeviceDefault.Light.Dialog"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
