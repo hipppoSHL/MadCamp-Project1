@@ -40,8 +40,11 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-
         </activity>
+        <activity android:name=".AddTodo"
+            android:screenOrientation="unspecified"
+            android:theme="@android:style/Theme.DeviceDefault.Light.Dialog" />
+
     </application>
 
 </manifest>

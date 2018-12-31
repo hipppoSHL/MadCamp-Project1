@@ -53,8 +53,13 @@ public class AddTodo extends Activity {
             @Override
             public void onClick(View view) {
                 String todoText = todoEditor.getText().toString();
-                Toast.makeText(getApplicationContext(), todoText + "\n" + str_date, Toast.LENGTH_LONG).show();
-                finish();
+                if (!todoText.equals("") && str_date != null) {
+                    Toast.makeText(getApplicationContext(), todoText + "\n" + str_date, Toast.LENGTH_LONG).show();
+                    finish();
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "날짜와 내용을 잘 입력해 주세요.", Toast.LENGTH_LONG).show();
+                }
             }
         });
 
