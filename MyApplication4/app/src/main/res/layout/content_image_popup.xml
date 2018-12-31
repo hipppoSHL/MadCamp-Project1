@@ -8,13 +8,18 @@
     tools:context=".ImagePopup"
     tools:showIn="@layout/image_popup">
 
-    <ImageView
-        android:id="@+id/imageView"
+    <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="370px"
-        android:padding="3px"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="99dp" />
+        android:layout_height="fill_parent">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_centerInParent="true"
+            android:scaleType="fitCenter"
+            />
+
+    </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>
