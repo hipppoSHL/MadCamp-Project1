@@ -33,7 +33,6 @@ public class Fragment3 extends Fragment {
 
         listView = (ListView)view.findViewById(R.id.listView2);
 
-
         dataSet = new JSONArray();
         JsonUse.jsonAdd(dataSet,12,12,"adfasdf", false);
         JsonUse.jsonAdd(dataSet,12,13,"adfasadfdf", false);
@@ -41,8 +40,9 @@ public class Fragment3 extends Fragment {
 
         Log.d("aaa", String.valueOf(dataSet));
 
+
         fragment3Adapter = new Fragment3Adapter(this.getActivity(), dataSet);
-        //listView.setAdapter(fragment3Adapter);
+        listView.setAdapter(fragment3Adapter);
 
         // fab 클릭이벤트
         fab = (FloatingActionButton) view.findViewById(R.id.fab_todoadd);
@@ -55,6 +55,4 @@ public class Fragment3 extends Fragment {
 
         return view;
     }
-
-
 }

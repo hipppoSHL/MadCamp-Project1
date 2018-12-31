@@ -2,6 +2,7 @@ package com.example.q.myapplication4;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +10,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import org.json.JSONException;
-import org.json.JSONObject;
+import org.json.simple.JSONObject;
 import org.json.simple.JSONArray;
 import org.w3c.dom.Text;
 
@@ -55,7 +56,7 @@ public class Fragment3Adapter extends BaseAdapter {
             holder = new ViewHolder();
             LayoutInflater inflater = (LayoutInflater) context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.lv_item, null, true);
+            convertView = inflater.inflate(R.layout.todo_list_item, null, true);
 
             holder.tvdate = (TextView) convertView.findViewById(R.id.todo_date);
             holder.tvnote = (TextView) convertView.findViewById(R.id.todo_text);
@@ -70,19 +71,16 @@ public class Fragment3Adapter extends BaseAdapter {
             // the getTag returns the viewHolder object set as a tag to the view
             holder = (ViewHolder)convertView.getTag();
         }
-        //JSONObject data = (JSONObject)dataSet.get(position);
-            //String date = dateStringCreate((int)data.get("month"), (int)data.get("day"));
-            //String note = (String)data.get("note");
-            //boolean finish = (boolean)data.get("finish");
 
-        holder.tvdate.setText("12/31");
-        holder.tvnote.setText("note");
-        holder.tvfinish.setText("1");
+            JSONObject data = (JSONObject)dataSet.get(position);
+            String date = dateStringCreate((int) data.get("month"), (int) data.get("day"));
 
-        //holder.tvname.setText(contactModelArrayList.get(position).getName());
-        //holder.tvnumber.setText(contactModelArrayList.get(position).getNumber());
-        //holder.tvimage.setImageBitmap(contactModelArrayList.get(position).getImage());
-
+            String note = (String) data.get("note");
+            boolean finish = (boolean) data.get("finish");
+            Log.d("ddd", String.valueOf(data));
+            holder.tvdate.setText(date);
+            holder.tvnote.setText(note);
+            holder.tvfinish.setText("1");
 
         return convertView;
     }
