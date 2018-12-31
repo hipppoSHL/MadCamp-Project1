@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.q.myapplication4">
+
     <!-- permission, 연락처 위해 필요 -->
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.WRITE_CONTACTS" />
-    <uses-permission android:name="android.permission.SEND_SMS"/>
-    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
 
     <application
         android:allowBackup="true"
@@ -26,12 +26,22 @@
         </activity>
         <activity
             android:name=".ContactActivity"
-            android:theme="@android:style/Theme.DeviceDefault.Light.Dialog"
-            android:screenOrientation="unspecified" />
+            android:screenOrientation="unspecified"
+            android:theme="@android:style/Theme.DeviceDefault.Light.Dialog" />
         <activity
             android:name=".AddPhoneContactActivity"
-            android:theme="@android:style/Theme.DeviceDefault.Light.Dialog"
-            android:screenOrientation="unspecified"/>
+            android:screenOrientation="unspecified"
+            android:theme="@android:style/Theme.DeviceDefault.Light.Dialog" />
+        <activity
+            android:name=".ImagePopup"
+            android:label="@string/title_activity_image_popup"
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+        </activity>
     </application>
 
 </manifest>

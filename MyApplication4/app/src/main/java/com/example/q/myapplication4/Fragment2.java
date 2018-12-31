@@ -69,11 +69,11 @@ public class Fragment2 extends Fragment {
         }
 
         public final void callImageViewer(int selectedIndex) {
-            //Intent i = new Intent(mContext, ImagePopup.class);
+            Intent i = new Intent(mContext, ImagePopup.class);
             String thumbPath = photoList.get(selectedIndex).getThumbnailURI();
             String imgPath = photoList.get(selectedIndex).getImageURI();
-            //i.putExtra("filename", imgPath);
-            //startActivityForResult(i, 1);
+            i.putExtra("filename", imgPath);
+            startActivityForResult(i, 1);
         }
 
         public boolean deleteSelected(int sIndex) {
