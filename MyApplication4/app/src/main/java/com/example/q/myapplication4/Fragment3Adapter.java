@@ -80,7 +80,7 @@ public class Fragment3Adapter extends BaseAdapter {
             Log.d("ddd", String.valueOf(data));
             holder.tvdate.setText(date);
             holder.tvnote.setText(note);
-            holder.tvfinish.setText("1");
+            //holder.tvfinish.setText("1");
 
         return convertView;
     }
