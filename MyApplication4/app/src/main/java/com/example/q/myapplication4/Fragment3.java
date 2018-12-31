@@ -22,14 +22,14 @@ public class Fragment3 extends Fragment {
     }
 
     public boolean check = false;
+    private ListView listView;
+    private JSONArray dataSet;
+    private Fragment3Adapter fragment3Adapter;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        ListView listView;
-        Fragment3Adapter fragment3Adapter;
         FloatingActionButton fab;
-        JSONArray dataSet;
 
         View view = inflater.inflate(R.layout.fragment_fragment3, container, false);
 
@@ -57,5 +57,13 @@ public class Fragment3 extends Fragment {
         });
 
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        fragment3Adapter = new Fragment3Adapter(this.getActivity(), dataSet);
+        listView.setAdapter(fragment3Adapter);
+
     }
 }
