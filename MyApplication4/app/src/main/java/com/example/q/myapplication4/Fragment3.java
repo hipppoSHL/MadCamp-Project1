@@ -21,6 +21,8 @@ public class Fragment3 extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
+    public boolean check = false;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -33,12 +35,13 @@ public class Fragment3 extends Fragment {
 
         listView = (ListView)view.findViewById(R.id.listView2);
 
-        dataSet = new JSONArray();
-        JsonUse.jsonAdd(dataSet,12,12,"adfasdf", false);
-        JsonUse.jsonAdd(dataSet,12,13,"adfasadfdf", false);
-        JsonUse.jsonAdd(dataSet,12,14,"adfasfasdadfdf", false);
+        dataSet = JsonUse.dataSet;
+        if (check == false) {
+            JsonUse.jsonAdd(dataSet, 1, 1, "안녕하세요!", false);
+            check = true;
+        }
 
-        Log.d("aaa", String.valueOf(dataSet));
+        // Log.d("aaa", String.valueOf(dataSet));
 
 
         fragment3Adapter = new Fragment3Adapter(this.getActivity(), dataSet);

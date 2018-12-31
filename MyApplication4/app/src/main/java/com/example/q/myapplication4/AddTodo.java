@@ -10,6 +10,7 @@ import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import org.json.simple.JSONArray;
 
 import org.w3c.dom.Text;
 
@@ -20,6 +21,7 @@ public class AddTodo extends Activity {
     private TextView dateText;
     private Integer year, month, date_month;
     private String str_date;
+    JSONArray dataSet;
 
 
     @Override
@@ -54,6 +56,8 @@ public class AddTodo extends Activity {
             public void onClick(View view) {
                 String todoText = todoEditor.getText().toString();
                 if (!todoText.equals("") && str_date != null) {
+                    dataSet = JsonUse.dataSet;
+                    JsonUse.jsonAdd(dataSet,month,date_month,todoText, false);
                     Toast.makeText(getApplicationContext(), todoText + "\n" + str_date, Toast.LENGTH_LONG).show();
                     finish();
                 }
