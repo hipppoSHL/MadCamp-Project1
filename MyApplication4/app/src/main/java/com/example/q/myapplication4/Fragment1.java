@@ -39,6 +39,7 @@ public class Fragment1 extends Fragment {
     private CustomAdapter customAdapter;
     private ArrayList<ContactModel> contactModelArrayList;
     private Bitmap bp;
+    private View view;
 
     public Fragment1() {}
 
@@ -51,7 +52,7 @@ public class Fragment1 extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_fragment1, container, false);
+        view = inflater.inflate(R.layout.fragment_fragment1, container, false);
 
         listView = (ListView) view.findViewById(R.id.listView);
 
@@ -123,9 +124,46 @@ public class Fragment1 extends Fragment {
         return view;
     }
 
-    // fragment refresh
-    private void refresh() {
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.detach(this).attach(this).commit();
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        listView = (ListView) view.findViewById(R.id.listView);
+
+        contactModelArrayList = new ArrayList<>();
+
+        Cursor phones = getActivity().getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null,null,null, ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME+" ASC");
+        while (phones.moveToNext())
+        {
+            String name=phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
+            String phoneNumber = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+            /* ContactModel 수정함 */ String imageUri = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.PHOTO_URI));
+            // 프로필 사진 있으면 프로필사진대로, 없으면 디폴트 사진 로드하게 한다
+            // 비트맵으로 했어요
+            if (imageUri != null) {
+                try {
+                    bp = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), Uri.parse(imageUri));
+                } catch (FileNotFoundException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+            else {
+                bp = BitmapFactory.decodeResource(getActivity().getResources(), R.drawable.user);
+            }
+
+            ContactModel contactModel = new ContactModel();
+            contactModel.setName(name);
+            contactModel.setNumber(phoneNumber);
+            contactModel.setImage(bp);
+            contactModelArrayList.add(contactModel);
+            // Log.d("name>>",name+"  "+phoneNumber);
+        }
+        phones.close();
+        customAdapter = new CustomAdapter(this.getActivity(), contactModelArrayList);
+        listView.setAdapter(customAdapter);
     }
 }
