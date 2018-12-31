@@ -7,8 +7,15 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/imagegallery"
+    <GridView
+        android:id="@+id/ImgGridView"
+        android:gravity="center"
+        android:numColumns="4"
+        android:columnWidth="60dp"
+        android:stretchMode="columnWidth"
+        android:padding="10dp"
+        android:verticalSpacing="10dp"
+        android:horizontalSpacing="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </FrameLayout>
