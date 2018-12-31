@@ -57,8 +57,8 @@ public class AddTodo extends Activity {
                 String todoText = todoEditor.getText().toString();
                 if (!todoText.equals("") && str_date != null) {
                     dataSet = JsonUse.dataSet;
-                    JsonUse.jsonAdd(dataSet,month,date_month,todoText, false);
-                    Toast.makeText(getApplicationContext(), todoText + "\n" + str_date, Toast.LENGTH_LONG).show();
+                    JsonUse.jsonAdd(dataSet, (month + 1), date_month, todoText, false);
+                    Toast.makeText(getApplicationContext(), "일정이 추가되었습니다.", Toast.LENGTH_LONG).show();
                     finish();
                 }
                 else {
