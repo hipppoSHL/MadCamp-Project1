@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ListView;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -95,7 +96,7 @@ public class Fragment3 extends Fragment {
                 JSONObject data = (JSONObject)dataSet.get(position);
                 boolean finish = (boolean) data.get("finish");
                 data.put("finish", !finish);
-                fragment3Adapter.notifyDataSetChanged();
+                ((CheckBox)(view.findViewById(R.id.check))).setChecked(!finish);
                 Log.d("ddd", String.valueOf(dataSet));
             }
         });

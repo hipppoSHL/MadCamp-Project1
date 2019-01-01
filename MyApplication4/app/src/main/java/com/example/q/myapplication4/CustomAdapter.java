@@ -25,11 +25,7 @@ public class CustomAdapter extends BaseAdapter {
         this.context = context;
         this.contactModelArrayList = contactModelArrayList;
     }
-
-    @Override
-    public int getViewTypeCount() {
-        return getCount();
-    }
+    
     @Override
     public int getItemViewType(int position) {
 

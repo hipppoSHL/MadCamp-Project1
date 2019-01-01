@@ -30,10 +30,6 @@ public class Fragment3Adapter extends BaseAdapter {
     }
 
     @Override
-    public int getViewTypeCount() {
-        return getCount();
-    }
-    @Override
     public int getItemViewType(int position) {
 
         return position;
