@@ -41,10 +41,6 @@ public class Fragment3 extends Fragment {
         listView = (ListView)view.findViewById(R.id.listView2);
 
         dataSet = JsonUse.dataSet;
-        if (check == false) {
-            JsonUse.jsonAdd(dataSet, 1, 1, "안녕하세요!", false);
-            check = true;
-        }
 
         Log.d("aaa", String.valueOf(dataSet));
 
