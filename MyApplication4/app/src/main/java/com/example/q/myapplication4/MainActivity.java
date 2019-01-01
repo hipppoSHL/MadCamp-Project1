@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         TabLayout tabs = (TabLayout)findViewById(R.id.tabs);
         tabs.addTab(tabs.newTab().setText("연락처"));
         tabs.addTab(tabs.newTab().setText("사진첩"));
-        tabs.addTab(tabs.newTab().setText("tab3"));
+        tabs.addTab(tabs.newTab().setText("할 일"));
 
 
 

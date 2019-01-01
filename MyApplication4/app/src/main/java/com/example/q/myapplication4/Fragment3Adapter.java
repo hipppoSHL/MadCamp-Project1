@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import org.json.JSONException;
@@ -22,6 +23,10 @@ public class Fragment3Adapter extends BaseAdapter {
     public Fragment3Adapter(Context context, JSONArray dataSet){
         this.context = context;
         this.dataSet = dataSet;
+    }
+
+    public Object getDataSet(){
+        return this.dataSet;
     }
 
     @Override
@@ -60,7 +65,9 @@ public class Fragment3Adapter extends BaseAdapter {
 
             holder.tvdate = (TextView) convertView.findViewById(R.id.todo_date);
             holder.tvnote = (TextView) convertView.findViewById(R.id.todo_text);
-            holder.tvfinish = (TextView) convertView.findViewById(R.id.check);
+            holder.checkBox = (CheckBox) convertView.findViewById(R.id.check);
+
+            //holder.tvfinish = (TextView) convertView.findViewById(R.id.check);
 
             // 이미지 동그랗게 하는거라는데 안먹힘
             // holder.tvimage.setBackground(new ShapeDrawable(new OvalShape()));
@@ -77,16 +84,19 @@ public class Fragment3Adapter extends BaseAdapter {
 
             String note = (String) data.get("note");
             boolean finish = (boolean) data.get("finish");
+            Log.d("ddd", String.valueOf(dataSet));
             Log.d("ddd", String.valueOf(data));
             holder.tvdate.setText(date);
             holder.tvnote.setText(note);
-            //holder.tvfinish.setText("1");
+            holder.checkBox.setChecked(true);
+            holder.checkBox.setClickable(false);
+            holder.checkBox.setChecked(finish);
 
         return convertView;
     }
 
     private class ViewHolder{
-
+        CheckBox checkBox;
         protected TextView tvdate, tvnote, tvfinish;
     }
 
@@ -96,4 +106,14 @@ public class Fragment3Adapter extends BaseAdapter {
 
         return monthString + "/" + dayString;
     }
+
+    public void checkedConfirm(int position) {
+        JSONObject data = (JSONObject)dataSet.get(position);
+        boolean finish = (boolean) data.get("finish");
+        data.put("finish", !finish);
+        data.put("adf","adsfs");
+
+        //Log.d("ddd", String.valueOf(data));
+    }
+
 }
