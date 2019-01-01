@@ -30,10 +30,6 @@ public class Fragment3Adapter extends BaseAdapter {
     }
 
     @Override
-    public int getViewTypeCount() {
-        return getCount();
-    }
-    @Override
     public int getItemViewType(int position) {
 
         return position;
@@ -80,7 +76,7 @@ public class Fragment3Adapter extends BaseAdapter {
         }
 
             JSONObject data = (JSONObject)dataSet.get(position);
-            String date = dateStringCreate((int) data.get("month"), (int) data.get("day"));
+            String date = dateStringCreate((String) data.get("month"), (String) data.get("day"));
 
             String note = (String) data.get("note");
             boolean finish = (boolean) data.get("finish");
@@ -100,7 +96,7 @@ public class Fragment3Adapter extends BaseAdapter {
         protected TextView tvdate, tvnote, tvfinish;
     }
 
-    private String dateStringCreate(int month, int day){
+    private String dateStringCreate(String month, String day){
         String monthString = String.valueOf(month);
         String dayString = String.valueOf(day);
 

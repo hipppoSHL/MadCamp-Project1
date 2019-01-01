@@ -14,12 +14,17 @@ import org.json.simple.JSONArray;
 
 import org.w3c.dom.Text;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class AddTodo extends Activity {
 
     private CalendarView mCalendarView;
     private EditText todoEditor;
     private TextView dateText;
-    private Integer year, month, date_month;
+    private String year, month, date_month;
+    private Integer monthint;
     private String str_date;
     JSONArray dataSet;
 
@@ -41,10 +46,11 @@ public class AddTodo extends Activity {
         mCalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(CalendarView calendarView, int i /*year*/, int i1 /*month*/, int i2 /*dayOfMonth*/) {
-                year = i;
-                month = i1;
-                date_month = i2;
-                str_date = year + "/" + (month + 1) + "/" + date_month;
+                year = String.valueOf(i);
+                month = String.valueOf(i1);
+                date_month = String.valueOf(i2);
+                monthint = i1;
+                str_date = year + "/" + (i1 + 1) + "/" + date_month;
                 dateText.setText(str_date);
             }
         });
@@ -57,7 +63,20 @@ public class AddTodo extends Activity {
                 String todoText = todoEditor.getText().toString();
                 if (!todoText.equals("") && str_date != null) {
                     dataSet = JsonUse.dataSet;
-                    JsonUse.jsonAdd(dataSet, (month + 1), date_month, todoText, false);
+                    JsonUse.jsonAdd(dataSet, (String.valueOf(monthint + 1)), date_month, todoText, false);
+                    String str = dataSet.toString();
+                    Log.d("ddd", str);
+                    File file = new File("C:\\Users\\q\\Documents\\development\\MadCamp-Project1\\MyApplication4\\app\\src\\main\\assets\\todo_item_list.json");
+
+                    FileWriter fw = null;
+                    try {
+                        fw = new FileWriter(file, true);
+                        fw.write(str);
+                        fw.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
                     Toast.makeText(getApplicationContext(), "일정이 추가되었습니다.", Toast.LENGTH_LONG).show();
                     finish();
                 }

@@ -12,9 +12,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ListView;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 
 
 public class Fragment3 extends Fragment {
@@ -40,8 +47,20 @@ public class Fragment3 extends Fragment {
         listView = (ListView)view.findViewById(R.id.listView2);
 
         dataSet = JsonUse.dataSet;
+
+        String str = loadJSONFromAsset();
+        JSONParser parser = new JSONParser();
+        Object obj = null;
+        try {
+            obj = parser.parse(str);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        JSONArray jsonArray = (JSONArray) obj;
+        dataSet = jsonArray;
+
         if (check == false) {
-            JsonUse.jsonAdd(dataSet, 1, 1, "안녕하세요!", false);
+            JsonUse.jsonAdd(dataSet, "1", "1", "안녕하세요!", false);
             check = true;
         }
 
@@ -95,7 +114,8 @@ public class Fragment3 extends Fragment {
                 JSONObject data = (JSONObject)dataSet.get(position);
                 boolean finish = (boolean) data.get("finish");
                 data.put("finish", !finish);
-                fragment3Adapter.notifyDataSetChanged();
+//                fragment3Adapter.notifyDataSetChanged();
+                ((CheckBox)(view.findViewById(R.id.check))).setChecked(!finish);
                 Log.d("ddd", String.valueOf(dataSet));
             }
         });
@@ -106,8 +126,34 @@ public class Fragment3 extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        String str = loadJSONFromAsset();
+        JSONParser parser = new JSONParser();
+        Object obj = null;
+        try {
+            obj = parser.parse(str);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        JSONArray jsonArray = (JSONArray) obj;
+        dataSet = jsonArray;
         fragment3Adapter = new Fragment3Adapter(this.getActivity(), dataSet);
         listView.setAdapter(fragment3Adapter);
 
+    }
+
+    // assets 폴더에서 json 파일 읽어와 스트링 리턴한다
+    public String loadJSONFromAsset() {
+        String json = null;
+        try {
+            InputStream is = getActivity().getAssets().open("todo_item_list.json");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            json = new String(buffer, "UTF-8");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return json;
     }
 }
